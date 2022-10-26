@@ -19,12 +19,16 @@ app.use('/', (req, res, next) => {
     next();
 });
 
+app.get('/', (req, res) => {
+    res.json({msg: "welcome to iBoard-web-server"});
+});
+
 app.get('/:sem/:dept', (req, res) => {
     const { sem, dept } = req.params;
     db.collection(sem)
         .find({dept: {$all: [dept]}})
         .toArray((err, items) => {
-            res.send(items);
+            res.json(items);
         });
 });
 
