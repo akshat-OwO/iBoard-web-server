@@ -3,6 +3,7 @@ require('dotenv').config();
 // imports
 const express = require('express');
 const { Db } = require('mongodb');
+const cors = require('cors');
 const { MongoClient } = require('mongodb');
 
 // db
@@ -13,6 +14,7 @@ const app = express();
 
 // middlewares
 app.use(express.json());
+app.use(cors());
 
 app.use('/', (req, res, next) => {
     console.log(req.path, req.method);
